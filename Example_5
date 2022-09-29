@@ -1,0 +1,22 @@
+package sec05;
+
+import java.util.Scanner;
+
+public class Work_Ex8 {
+
+	public static void main(String[] args) {
+		
+		Scanner gab = new Scanner(System.in);
+
+    System.out.printf("0~999사이의 숫자를 입력하세요 : ");
+		int chung = gab.nextInt();
+
+		int num3 = chung / 100;               // 100의 자리
+		int num1 = chung % 100 / 10;          // 10의 자리
+		int num = chung % 10;                 // 1의 자리
+
+		System.out.println("각 자릿수의 합 = " + (num3 + num1 + num));
+
+	}
+
+}
