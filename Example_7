@@ -1,0 +1,63 @@
+package sec05;
+
+public class TransType {
+
+	public static void main(String[] args) {
+
+		int jungsu = 66;
+		char munja = 'A'; // 아스키코드 65
+		char munja1 = '1';
+		String munjayel = "123";
+		String munjaye2 = "ABC";
+
+		// 자동 형변환이나 강제 형변환으로 char를 int로 변경하면 문자 '1'의 아스키 코드인 49가 출력되어 올바른 방법이 아닙니다.
+		// jungsu + munja; 잘못된 방법
+		int ex1 = jungsu + munja1 - '0';          // 숫자값을 나타내는 문자에 대해서는 사용가능
+		int exm1 = jungsu + munja1 - '0';         // 숫자값이 아닌 다른문자를 나타내는 문자에 대해서는 사용 x
+
+
+		// 숫자를 문자로 아스키코드를 이용
+		char exd2 = (char) jungsu;
+		System.out.println("뭐야" + exd2);         // 아스키코드값인 B로 문자 출력
+
+
+		// 숫자를 문자열로 실제로 66이 문자열로 인식
+		String exd3 = Integer.toString(jungsu);
+		System.out.println(exd3);                 // 문자열 66으로 출력
+
+
+		// 즉 숫자값을 가진 문자가 아닌 다른 문자를 정수값으로 변경하고 싶을 때는 밑에 있는 방법을 사용해라
+		int exd1 = Character.getNumericValue(munja);
+		System.out.println(exd1);                  // 정수값 11으로 추력
+
+
+		// 문자를 문자열로 실제로 A값이 문자열로 인식
+		String exd4 = String.valueOf(munja);
+		System.out.println(exd4);                  // 문자열 A로 출력
+
+
+		// 문자열을 숫자로 바꾸기 위해서는 입력된 문자열이 숫자인지 아닌지 확인해야한다.
+		// 숫자로된 문자열이 아니면 오류가 난다.
+		int exd5 = Integer.valueOf(munjayel);
+		System.out.println(exd5);                  // 숫자값을 가졌기에 문자열 123 그대로 출력 
+
+
+		// 문자열값을 문자로 바꿔준 후 다시 숫자로 바꿔야한다.
+		// 문자열값이 길때는 for문을 사용 for (int t = 0; t < munjaye2.length(); t++) {
+		char exd6 = munjaye2.charAt(0);   // 문자열 A부분을 문자 A로 변환
+		char exd7 = munjaye2.charAt(1);   // 문자열 B부분을 문자 B로 변환
+		char exd8 = munjaye2.charAt(2);   // 문자열 C부분을 문자 C로 변환
+
+
+    // 문자값을 다시 숫자로 바꿔주는 식 (위에 있는 숫자값을 가진 문자가 아닌 다른 문자를 정수값으로 받는 방법 사용)
+		int exd9 = Character.getNumericValue(exd6);
+		int exd10 = Character.getNumericValue(exd7);
+		int exd11 = Character.getNumericValue(exd8);
+		System.out.println(exd9); // 결과 10
+		System.out.println(exd10); // 결과 11
+		System.out.println(exd11); // 결과 12
+
+
+	}
+
+}
