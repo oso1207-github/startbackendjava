@@ -1,0 +1,28 @@
+package sec05;
+
+import java.util.Scanner;
+
+public class Work_Ex8_Example {
+
+	public static void main(String[] args) {
+
+		Scanner intScanner = new Scanner(System.in);
+
+		System.out.print("0~999 사이의 숫자를 입력하세요 : ");
+		int intGab = intScanner.nextInt();
+
+		String transGab = Integer.toString(intGab);
+
+		char transCharGab100 = transGab.charAt(0);
+		char transCharGab10 = transGab.charAt(1);
+		char transCharGab1 = transGab.charAt(2);
+
+		int transIntGab100 = transCharGab100 - '0';
+		int transIntGab10 = transCharGab10 - '0';
+		int transIntGab1 = transCharGab1 - '0';
+
+		System.out.println("각 자리 수의 합 : " + (transIntGab100 + transIntGab10 + transIntGab1));
+
+	}
+
+}
