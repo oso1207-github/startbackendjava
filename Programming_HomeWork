@@ -1,0 +1,226 @@
+// 문제 5번 중첩 for문을이용하여 모든 변을 구하라
+
+public class Test {
+    public static void main(String[] args) {
+
+        // 밑변 + 높이 + 대각선 <= 20
+        // 밑변제곱 + 높이제곱 = 대각선 제곱
+
+        int mit, high, daGak, mit2, high2, daGak2, count = 0;
+
+
+        for (mit = 1; mit < 8; mit++){
+            for (high = 1; high < 8; high++){
+                for(daGak = 1; daGak < 8; daGak++){
+                    mit2 = mit * mit;
+                    high2 = high * high;
+                    daGak2 = daGak * daGak;
+                    if ((((mit + high + daGak) <= 20) && (daGak2==(mit2+high2)))) {
+                        count += 1;
+                        System.out.printf("%d번째 방법\n", count);
+                        System.out.println("만족하는 밑변의 길이" + mit);
+                        System.out.println("만족하는 높이의 길이" + high);
+                        System.out.printf("만족하는 대각선의 길이 %d\n\n", daGak);
+                    }
+                    }
+                }
+        }
+    }
+}
+
+
+// 문제 6번 가위바위보 게임
+import java.util.Scanner;
+
+public class Test6 {
+    public static void main(String[] args) {
+        Scanner GameInput = new Scanner(System.in);
+        System.out.print("철수 : ");
+        String RspGameInput = GameInput.next();
+        System.out.print("영희 : ");
+        String RspGameInput2 = GameInput.next();
+
+
+        if (RspGameInput.equals(RspGameInput2)){
+            System.out.println("무승부");
+        }
+        else{
+            if (RspGameInput.equals("r")) {
+                if (RspGameInput2.equals("s")){
+                    System.out.println("철수, 승!");
+                }
+                else System.out.println("영희, 승!");
+            }
+            else if(RspGameInput.equals("s")){
+                if (RspGameInput2.equals("p")) {
+                    System.out.println("철수, 승!");
+                }
+                else System.out.println("영희, 승!");
+            }
+            else {
+                if (RspGameInput2.equals("r")){
+                    System.out.println("철수, 승!");
+                }
+                else System.out.println("영희, 승!");
+            }
+        }
+    }
+}
+
+// 문제 6번 가위바위보게임 무조건 r,p,s 값을 입력받게 하고 싶을 때
+import java.util.Scanner;
+
+public class Test6 {
+    public static void main(String[] args) {
+        String RspGameInput = "", RspGameInput2 = "";
+        Scanner GameInput = new Scanner(System.in);
+        boolean goodChoice = true, goodChoice2 = true, goodChoice3 = true;
+
+        do {
+            System.out.println("r 혹은 s 혹은 p 중 하나를 입력해 주세요");
+            System.out.print("철수 : ");
+            RspGameInput = GameInput.next();        // 철수값 입력받음
+            System.out.print("영희 : ");
+            RspGameInput2 = GameInput.next();       // 영희값 입력받음
+
+            goodChoice = RspGameInput.equals("r") || RspGameInput.equals("s") || RspGameInput.equals("p");
+            goodChoice2 = RspGameInput2.equals("r") || RspGameInput2.equals("s") || RspGameInput2.equals("p");
+            goodChoice3 = (goodChoice == goodChoice2) ? true : false;      // 입력한 값이 r,s,p이면 true, 아니면 false
+
+        } while (goodChoice3 = false); // 조건식이 틀릴 때까지 반복하므로 true 일 때만 반복해제 
+
+        if (RspGameInput.equals(RspGameInput2)) {       // 철수값과 영희값이 동일하다면 무승부
+            System.out.println("무승부");
+        } else {
+            if (RspGameInput.equals("r")) {             // 철수값이 r이면 실행
+                if (RspGameInput2.equals("s")) {         // 영희값이 s이면 철수 승 출력
+                    System.out.println("철수, 승!");
+                } else System.out.println("영희, 승!");     // 영희값이 s가 아니면 p밖에 없으니 영희 승 출력
+            } else if (RspGameInput.equals("s")) {           // 철수값이 s이면 실행
+                if (RspGameInput2.equals("p")) {         // 영희값이 p이면 철수 승 출력
+                    System.out.println("철수, 승!");
+                } else System.out.println("영희, 승!");      // 영희값이 p가 아니면 s밖에 없으니 영희 승 출력
+            } else {                                        // 철수값이 무조건 p
+                if (RspGameInput2.equals("r")) {           // 영희값이 r이면 철수 승 출력
+                    System.out.println("철수, 승!");
+                } else System.out.println("영희, 승!");      // 영희값이 r이 아니면 s밖에 없으니 영희 승 출력
+            }
+        }
+    }
+}
+
+
+
+
+// 문제 7번 가위바위보게임 메서드 방식
+
+import java.util.Scanner;
+
+public class Test7 {
+    public static void main(String[] args) {                     // void는 값을 반환하지 못하고 읽을 수만 있는 메서드
+        String c = input("철수");                                // input 메서드에 값이 문자열 철수일 때 클래스 문자열 타입인 c에 값 저장 
+        String y = input("영희");                                // input 메서드에 값이 문자열 영희일 때 클래스 문자열 타입인 y에 값 저장
+        whosWin(c, y);                                           // whosWin이라는 메서드에 문자열 c의 값과 문자열 y에 값을 선언 
+    }
+    static String input(String rsp){                             // 값을 반환 시 반환받는 곳이 문자열 타입이므로 input 메서드도 String으로 선언
+        Scanner ChulYoung = new Scanner(System.in);
+
+        String TurnGab = "";                                      // 값은 반환하기 위한 문자열 값 선언
+        if (rsp.equals("철수")){                                  // main 메서드에서 input 메서드에 "철수"라는 문자열일 경우를 가정
+            System.out.print("철수 : ");
+            String ChulInput = ChulYoung.next();                  // ChulInput이라는 곳에 문자열 값을 입력받는다.
+            TurnGab = ChulInput;
+        }
+        else {                                                    // main 메서드에서 input 메서드에 "철수"라는 문자열이 아닐 경우
+            System.out.print("영희 : ");          
+            String YoungInput = ChulYoung.next();                 // YoungInput이라는 곳에 문자열 값을 입력받는다.
+            TurnGab = YoungInput;
+        }
+        return TurnGab;
+    }
+
+    static void whosWin(String Inputc, String Inputy){             // main 메서드에 c와 y의 값을 읽기 위해 선언
+        if (Inputc.equals(Inputy)) {                               // main 메서드에 c의 값과 y같이 같을 경우
+            System.out.println("무승부");
+        } else if (Inputc.equals("r")) {                           // main 메서드에 c의 값이 "r"일 경우
+            if (Inputy.equals("s")) {
+                System.out.println("철수, 승!");
+            } else {
+                System.out.println("영희, 승!");
+            }
+        } else if (Inputc.equals("s")) {
+            if (Inputy.equals("p")) {
+                System.out.println("철수, 승!");
+            } else {
+                System.out.println("영희, 승!");
+            }
+        } else {
+            if (Inputy.equals("r")) {
+                System.out.println("철수, 승!");
+            } else {
+                System.out.println("영희, 승!");
+            }
+        }
+    }
+}
+
+
+// 문제 9번 주어진 것을 통해 메서드 완성하기
+
+
+public class Test9 {
+
+    // 문제에서 main 메소드가 주어짐
+    // 메서드 사용시 메서드 이름이 동일하더라도 매개변수 개수, 데이터 타입, 순서 중 하나라도 다르면 서로 다른 메서드로 취급
+    
+    public static void main(String[] args) {
+        foo("안녕", 1);
+        foo("안녕하세요", 1, 2);
+        foo("잘 있어");
+    }
+    
+    private static void foo(String Gab1, int su1) {
+        System.out.printf("%s %d\n", Gab1, su1);
+    }
+
+    public static void foo(String Gab2, int su2, int su21){
+        System.out.printf("%s %d %d\n", Gab2, su2, su21);
+    }
+
+    private static void foo(String Gab3) {
+        System.out.println(Gab3);
+    }
+}
+
+
+
+// 10번 문제 프로그램 일부가 표시되어 그것에 대한 isPrime메서드 완성하기
+
+import java.util.Scanner;
+
+public class Test10 {
+
+    // 문제 1과 자신 외에는 나누지 않는 수이면서 그 값이 1보다 큰 소수인지 판단
+    // main 메서드가 문제에서 주어짐
+
+    public static void main(String[] args) {
+        System.out.print("양의 정수를 입력하세요 : ");
+
+        int num = new Scanner(System.in).nextInt();
+
+        if (isPrime(num))
+            System.out.println(num + "는 소수입니다.");
+        else
+            System.out.println(num + "는 소수가 아닙니다.");
+    }
+    public static boolean isPrime(int inputGab){                    // 반환 받는 곳이 if 즉 true와 false로 구성되어야 하기에 boolean으로 선언
+        boolean temp = true;
+        if (inputGab>1 && (inputGab%2==1) && (inputGab%3!=0)) {     // 2로 나누었을 때 나머지가 1이거나 3으로 나누었을 때 0이 아니면 소수이다.
+            temp = true;
+        }
+        else {
+            temp = false;
+        }
+        return temp;
+    }
+}
